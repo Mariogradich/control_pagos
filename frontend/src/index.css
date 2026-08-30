@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+/* Activa la variante `dark:` con clase en <html> (permite el toggle manual) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Configuracion CSS-first de Tailwind v4 */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/*
+ * Tema oscuro por "inversion de neutros":
+ * Tailwind v4 genera utilidades que leen var(--color-*), entonces re-mapear
+ * la escala slate + blanco hace que TODOS los componentes se adapten solos.
+ * Los acentos semanticos (emerald/rose/amber) y el primario (teal) no cambian.
+ */
+.dark {
+  --color-white: #1e293b;
+  --color-slate-50: #0f172a;
+  --color-slate-100: #0f172a;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  --color-slate-950: #ffffff;
+}
+
+body {
+  @apply bg-slate-100 text-slate-800 antialiased;
+}
